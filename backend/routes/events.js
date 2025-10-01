@@ -5,8 +5,8 @@ const router = express.Router();
 
 // GET all events
 router.get("/", async (req, res) => {
-  const events = await Event.find();
-  res.json(events);
+    const events = await Event.find(); 
+    res.json(events);
 });
 
 // GET one event by ID
