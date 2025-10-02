@@ -37,12 +37,20 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 - Understanding the difference between pages and components in Next.js
 - Initial Tailwind setup and configuration
 
+
 ### Day 2
 **Learnings:**
-- 
+- Set up backend with Express and Mongoose for MongoDB integration
+- Created RESTful API endpoints for events (CRUD operations)
+- Connected frontend to backend API for dynamic event data
+- Learned how to seed the database with initial event data using a custom script
+- Improved error handling and API responses
 
 **Issues Faced:**
-- 
+- MongoDB connection string required database name for correct data access
+- API returned empty array until database was seeded and connection string was fixed
+- Browser requested favicon.ico from backend, causing 404 errors (fixed by handling route)
+- Debugging CORS and JSON middleware issues for API requests
 
 ---
 
