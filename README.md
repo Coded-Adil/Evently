@@ -38,6 +38,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 - Initial Tailwind setup and configuration
 
 
+
 ### Day 2
 **Learnings:**
 - Set up backend with Express and Mongoose for MongoDB integration
@@ -51,6 +52,19 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 - API returned empty array until database was seeded and connection string was fixed
 - Browser requested favicon.ico from backend, causing 404 errors (fixed by handling route)
 - Debugging CORS and JSON middleware issues for API requests
+
+### Day 3
+**Learnings:**
+- Built a professional, animated banner carousel for the home page
+- Added a dynamic stats section with animated counting numbers
+- Refactored and improved the Navbar: centered links, added responsive hamburger menu, and dynamic nav links
+- Implemented a modern events page with server-side data fetching and event cards
+- Created a login page and integrated a login button in the Navbar
+
+**Issues Faced:**
+- Debugging client-side vs server-side data fetching in Next.js app directory
+- Handling CORS and API endpoint differences between frontend and backend
+- Ensuring responsive design and smooth animations across devices
 
 ---
 
