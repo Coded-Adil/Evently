@@ -1,5 +1,3 @@
-"use client";
-import React, { useEffect, useState } from "react";
 
 function EventCard({ event }) {
   return (
@@ -19,25 +17,21 @@ function EventCard({ event }) {
   );
 }
 
-export default function EventsPage() {
-  const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch("http://localhost:5000/api/events")
-      .then((res) => res.json())
-      .then((data) => {
-        setEvents(data);
-        setLoading(false);
-      });
-  }, []);
+export default async function EventsPage() {
+  let events = [];
+  try {
+    const res = await fetch("http://localhost:5000/api/events", { next: { revalidate: 60 } });
+    if (res.ok) {
+      events = await res.json();
+    }
+  } catch (err) {
+    events = [];
+  }
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-900 backdrop-blur-xl py-16 px-4">
       <h1 className="text-4xl font-extrabold text-white mb-10 text-center">Our Events</h1>
-      {loading ? (
-        <div className="text-center text-indigo-300 text-xl">Loading events...</div>
-      ) : events.length === 0 ? (
+      {events.length === 0 ? (
         <div className="text-center text-gray-400 text-xl">No events found.</div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
