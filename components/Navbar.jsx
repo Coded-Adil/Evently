@@ -2,6 +2,8 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import useAuth from "../firebase/useAuth";
+import LogoutButton from "./LogoutButton";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -10,8 +12,10 @@ const navLinks = [
   { name: "Contact", href: "/contact" },
 ];
 
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { user, loading } = useAuth();
   return (
     <nav className="bg-gray-900 text-white px-6 py-4 border-b-2 border-indigo-400 flex items-center font-serif relative">
       <h1 className="text-2xl md:text-3xl font-extrabold tracking-wide text-indigo-300 font-[cursive]">Evently</h1>
@@ -25,13 +29,17 @@ export default function Navbar() {
           ))}
         </div>
       </div>
-      {/* Login button on right for large screens */}
+      {/* Login/Logout button on right for large screens */}
       <div className="hidden md:flex">
-        <Link href="/login">
-          <button className="ml-6 px-6 py-2 rounded-lg bg-indigo-600 text-white font-semibold text-lg shadow-md hover:bg-indigo-700 transition-all duration-200">
-            Login
-          </button>
-        </Link>
+        {!loading && user ? (
+          <LogoutButton />
+        ) : (
+          <Link href="/login">
+            <button className="ml-6 px-6 py-2 rounded-lg bg-indigo-600 text-white font-semibold text-lg shadow-md hover:bg-indigo-700 transition-all duration-200">
+              Login
+            </button>
+          </Link>
+        )}
       </div>
       {/* Hamburger menu for small/medium screens */}
       <button
@@ -57,7 +65,7 @@ export default function Navbar() {
           )}
         </svg>
       </button>
-      {/* Mobile menu with links and login button */}
+      {/* Mobile menu with links and login/logout button */}
       <div
         className={`absolute top-16 left-0 w-full bg-gray-950/95 backdrop-blur-lg flex flex-col items-center py-6 space-y-6 z-50 shadow-xl md:hidden transition-all duration-500 ${open ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-8 pointer-events-none'}`}
         style={{ borderRadius: open ? '0 0 2rem 2rem' : '0 0 2rem 2rem' }}
@@ -67,11 +75,15 @@ export default function Navbar() {
             {link.name}
           </Link>
         ))}
-        <Link href="/login" onClick={() => setOpen(false)}>
-          <button className="px-6 py-2 rounded-lg bg-indigo-600 text-white font-semibold text-lg shadow-md hover:bg-indigo-700 transition-all duration-200">
-            Login
-          </button>
-        </Link>
+        {!loading && user ? (
+          <LogoutButton />
+        ) : (
+          <Link href="/login" onClick={() => setOpen(false)}>
+            <button className="px-6 py-2 rounded-lg bg-indigo-600 text-white font-semibold text-lg shadow-md hover:bg-indigo-700 transition-all duration-200">
+              Login
+            </button>
+          </Link>
+        )}
       </div>
     </nav>
   );
