@@ -5,6 +5,8 @@ import { register, googleLogin } from "../../firebase/authService";
 export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [displayImage, setDisplayImage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -14,8 +16,24 @@ export default function SignupPage() {
     setLoading(true);
     setError("");
     setSuccess(false);
+    if (password !== confirmPassword) {
+      setLoading(false);
+      setError("Passwords do not match");
+      return;
+    }
     try {
-      await register(email, password);
+      // Register with Firebase
+      const userCredential = await register(email, password);
+      // Send user data to backend
+      await fetch("http://localhost:5000/api/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          uid: userCredential.user.uid,
+          email,
+          displayImage,
+        }),
+      });
       setLoading(false);
       setSuccess(true);
     } catch (err) {
@@ -42,6 +60,21 @@ export default function SignupPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          className="px-4 py-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:border-indigo-500 focus:ring-indigo-500 placeholder-gray-400"
+        />
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          required
+          className="px-4 py-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:border-indigo-500 focus:ring-indigo-500 placeholder-gray-400"
+        />
+        <input
+          type="text"
+          placeholder="Display Image URL"
+          value={displayImage}
+          onChange={(e) => setDisplayImage(e.target.value)}
           className="px-4 py-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:border-indigo-500 focus:ring-indigo-500 placeholder-gray-400"
         />
         <button

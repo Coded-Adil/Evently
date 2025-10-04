@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import eventRoutes from "./routes/events.js";
+import userRoutes from "./routes/users.js";
 
 // Load .env.local
 dotenv.config({ path: ".env.local" });
@@ -16,6 +17,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/events", eventRoutes);
+app.use("/api/users", userRoutes);
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI)
