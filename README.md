@@ -53,6 +53,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 - Browser requested favicon.ico from backend, causing 404 errors (fixed by handling route)
 - Debugging CORS and JSON middleware issues for API requests
 
+
 ### Day 3
 **Learnings:**
 - Built a professional, animated banner carousel for the home page
@@ -65,6 +66,23 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 - Debugging client-side vs server-side data fetching in Next.js app directory
 - Handling CORS and API endpoint differences between frontend and backend
 - Ensuring responsive design and smooth animations across devices
+
+### Day 4
+**Learnings:**
+- Integrated Firebase Authentication for email/password and Google login/signup
+- Created signup page with display image and confirm password fields
+- Ensured user data (uid, email, password, displayName, displayImage) is posted to backend and stored in MongoDB
+- Built backend user model and routes for user creation and retrieval
+- Improved error handling and validation in signup flow
+- Clarified full-stack data flow from frontend to backend
+- Validated backend and frontend integration for user registration
+
+**Issues Faced:**
+- Initial signup form did not send all required fields to backend (fixed)
+- Debugged backend route expectations and frontend POST payload
+- Ensured .env usage for Firebase config and secrets
+- Verified MongoDB user collection and data persistence
+- Troubleshot error messages and improved feedback for failed signup
 
 ---
 
