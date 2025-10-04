@@ -71,7 +71,6 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 **Learnings:**
 - Integrated Firebase Authentication for email/password and Google login/signup
 - Created signup page with display image and confirm password fields
-- Ensured user data (uid, email, password, displayName, displayImage) is posted to backend and stored in MongoDB
 - Built backend user model and routes for user creation and retrieval
 - Improved error handling and validation in signup flow
 - Clarified full-stack data flow from frontend to backend
