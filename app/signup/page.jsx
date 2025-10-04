@@ -7,6 +7,7 @@ export default function SignupPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [displayImage, setDisplayImage] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -31,6 +32,8 @@ export default function SignupPage() {
         body: JSON.stringify({
           uid: userCredential.user.uid,
           email,
+          password,
+          displayName,
           displayImage,
         }),
       });
@@ -46,6 +49,14 @@ export default function SignupPage() {
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-900 backdrop-blur-xl px-4">
       <form onSubmit={handleSubmit} className="bg-gray-950/80 rounded-2xl shadow-2xl p-8 w-full max-w-md border border-gray-800 flex flex-col gap-6">
         <h2 className="text-3xl font-bold text-white mb-2 text-center">Sign Up</h2>
+        <input
+          type="text"
+          placeholder="User Name"
+          value={displayName}
+          onChange={(e) => setDisplayName(e.target.value)}
+          required
+          className="px-4 py-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:border-indigo-500 focus:ring-indigo-500 placeholder-gray-400"
+        />
         <input
           type="email"
           placeholder="Email"
