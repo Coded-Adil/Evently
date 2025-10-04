@@ -1,19 +1,23 @@
 
+import Link from "next/link";
+
 function EventCard({ event }) {
   return (
-    <div className="bg-gray-950/80 rounded-2xl shadow-lg border border-gray-800 p-6 flex flex-col items-center transition hover:scale-105 hover:shadow-2xl duration-300">
-      <img
-        src={event.image || "/party.jpg"}
-        alt={event.title}
-        className="w-full h-40 object-cover rounded-xl mb-4 border border-gray-900"
-      />
-      <h3 className="text-2xl font-bold text-indigo-300 mb-2 text-center">{event.title}</h3>
-      <p className="text-gray-300 mb-2 text-center">{event.description}</p>
-      <div className="flex flex-col items-center text-sm text-gray-400 mb-2">
-        <span>{new Date(event.date).toLocaleDateString()}</span>
-        <span>{event.location}</span>
+    <Link href={`/events/${event._id}`} className="w-full">
+      <div className="bg-gray-950/80 rounded-2xl shadow-lg border border-gray-800 p-6 flex flex-col items-center transition hover:scale-105 hover:shadow-2xl duration-300 cursor-pointer">
+        <img
+          src={event.image || "/party.jpg"}
+          alt={event.title}
+          className="w-full h-40 object-cover rounded-xl mb-4 border border-gray-900"
+        />
+        <h3 className="text-2xl font-bold text-indigo-300 mb-2 text-center">{event.title}</h3>
+        <p className="text-gray-300 mb-2 text-center">{event.description}</p>
+        <div className="flex flex-col items-center text-sm text-gray-400 mb-2">
+          <span>{new Date(event.date).toLocaleDateString()}</span>
+          <span>{event.location}</span>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
