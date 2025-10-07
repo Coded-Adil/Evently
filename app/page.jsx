@@ -36,7 +36,7 @@ export default async function Home() {
   const events = await getEvents();
 
   return (
-    <main className="min-h-screen mx-auto py-4 bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-900 backdrop-blur-xl">
+    <main className="min-h-screen mx-auto py-6 bg-gradient-to-br from-indigo-900 via-gray-900 to-indigo-900 backdrop-blur-xl">
       <BannerCarousel />
       <StatsSection />
 
