@@ -14,7 +14,7 @@ async function getEvents() {
 
 function EventCard({ event }) {
   return (
-    <Link href={`/events/${event._id}`} className="w-full">
+    <div className="w-full">
       <div className="bg-gray-950/80 rounded-2xl shadow-lg border border-gray-800 p-6 flex flex-col items-center transition hover:scale-105 hover:shadow-2xl duration-300 cursor-pointer">
         <img
           src={event.image || "/party.jpg"}
@@ -24,11 +24,11 @@ function EventCard({ event }) {
         <h3 className="text-2xl font-bold text-indigo-300 mb-2 text-center">{event.title}</h3>
         <p className="text-gray-300 mb-2 text-center">{event.description}</p>
         <div className="flex flex-col items-center text-sm text-gray-400 mb-2">
-          <span>{new Date(event.date).toLocaleDateString()}</span>
+          <span>{event.date ? new Date(event.date).toLocaleDateString() : ""}</span>
           <span>{event.location}</span>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
 
@@ -36,7 +36,7 @@ export default async function Home() {
   const events = await getEvents();
 
   return (
-    <main className="min-h-screen mx-auto py-6 bg-gradient-to-br from-indigo-900 via-gray-900 to-indigo-900 backdrop-blur-xl">
+    <main className="min-h-screen mx-auto bg-gradient-to-br from-indigo-900 via-gray-900 to-indigo-900 backdrop-blur-xl">
       <BannerCarousel />
       <StatsSection />
 
@@ -50,7 +50,7 @@ export default async function Home() {
             </button>
           </Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-6">
           {events.length > 0 ? (
             events.map((event) => (
               <Link key={event._id} href={`/events/${event._id}`}>
